@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+        
+    <!-- Jangan lupa tambhakan schema locations -->
+    <context:property-placeholder location="classpath:support.properties"/>
+       
+    <bean id="mySkincentre" class="id.web.nisa.app.Office">
+    </bean>
+    
+    <bean id="myDoctor" class="id.web.nisa.app.Filler">
+    <!-- Dependency -->
+    	<constructor-arg ref="mySkincentre"></constructor-arg>
+    	<property name="iddoc" value="${test.iddoc}"></property>
+    	<property name="name" value="${test.name}"></property>
+    <!-- Setter Injection -->
+    	<property name="skincentre" ref="mySkincentre"></property>
+    </bean>
+    
+    <context:property-placeholder location="classpath:support.properties"/>
+    
+    <bean id="myDoctorPrototype" class="id.web.nisa.app.Filler" scope="prototype">
+    	<property name="iddoc" value="TEST"></property>
+    	<property name="name" value="Keanu gl"></property>
+    </bean>
+    
+</beans>
